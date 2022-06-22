@@ -1,0 +1,42 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+from google.colab import drive
+drive.mount('/content/drive')
+# choose a local (colab) directory to store the data.
+local_download_path = os.path.expanduser('https://drive.google.com/file/d/1bzj6VXa9bJblqxhZL697r8-O08redJMe/view?usp=sharing')
+try:
+  os.makedirs(local_download_path)
+except: pass
+df= pd.read_csv('/content/drive/MyDrive/ML/gene_expression.csv')
+df.head()
+df.shape
+df.info()
+df.isnull().any().sum()
+sns.scatterplot(data=df, x='Gene One', y='Gene Two', hue='Cancer Present')
+sns.scatterplot(data=df, x='Gene One', y='Gene Two', hue='Cancer Present')
+plt.xlim(2, 6)
+plt.ylim(3, 10)
+plt.legend(loc=(1.1, 0.5))
+sns.countplot(data=df, x='Cancer Present')
+df['Cancer Present'].value_counts()
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+scaler= StandardScaler()
+X= df.drop('Cancer Present', axis=1)
+y= df['Cancer Present']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+scaler.fit(X_train)
+scaled_X_train= scaler.transform(X_train)
+scaled_X_test= scaler.transform(X_test)
+from sklearn.neighbors import KNeighborsClassifier
+knn_model= KNeighborsClassifier(n_neighbors=2)
+knn_model.fit(scaled_X_train, y_train)
+y_pred= knn_model.predict(scaled_X_test)
+#The prediction Value VS Actual Value of Test Data
+pd.DataFrame({'Y_Test':y_test, 'Y_Pred': y_pred})
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+confusion_matrix(y_test, y_pred)
+print(classification_report(y_test, y_pred))
