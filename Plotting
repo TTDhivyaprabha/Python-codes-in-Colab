@@ -1,4 +1,297 @@
+# Line plot
+
 import matplotlib.pyplot as plt
 import numpy as np
 %matplotlib inline
+temperature = [107, 473, 913, 1040, 1090, 1220, 1323, 1427, 1950, 3054]
+cationmol = [1, 2.6, 3.8, 7.5, 8, 9, 10, 50, 82, 77]
+plt.plot(temperature,cationmol,linewidth=2.0,color='g',alpha=0.5,marker='o')
+plt.title('Plot of mol% vs Temperature of Lead')
+plt.xlabel('Temperature')
+plt.ylabel('mol%')
+
+# Bar plot
+
+import matplotlib.pyplot as plt
+import numpy as np
+cation = ['Mn', 'Cd', 'Sn', 'Ti', 'Pt', 'Ce', 'Pb', 'Bi', 'Mo', 'Cu', 'Sb', 'Li', 'Mg']
+molecule = [9.2, 4.7, 4.5, 10.4, 2.8, 3.8, 2.6, 2.6, 5.5, 8.0, 4.4, 44.6, 18.7]
+fig = plt.figure()
+ax = fig.add_axes([0,0,1,1])
+ax.bar(cation,molecule)
+plt.show()
+
+# Scatter plot
+
+import matplotlib.pyplot as plt
+# Cation - Li - dataset-1
+x1 = [15.4, 4.3, 14.8, 4.3, 15.4]
+ 
+y1 = [76.3, 77, 78, 52.9, 73]
+ 
+# Cation - Sr - dataset-2
+x2 = [50, 5.6, 1.3, 3.2, 24.4]
+ 
+y2 = [73.3, 56, 78, 86, 72]
+
+# Cation - Ag - dataset-3
+x3 = [8.5, 8.5, 18.0, 18.0, 56.0]
+
+y3 = [0.1, 0.0, 0.3, 0.2, 0.4]
+plt.scatter(x1, y1, c ="pink",
+            linewidths = 2,
+            marker ="s",
+            edgecolor ="green",
+            s = 200)
+ 
+plt.scatter(x2, y2, c ="yellow",
+            linewidths = 2,
+            marker ="^",
+            edgecolor ="red",
+            s = 200)
+
+plt.scatter(x3, y3, c ="blue",
+            linewidths = 2,
+            marker ="o",
+            edgecolor ="orange",
+            s = 200)
+ 
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.show()
+
+# Stack plots
+
+temperature = [744, 748, 743, 1013, 1062, 1073, 1093, 1128]
+CH4 = [0.03, 0.52, 0.64, 0.64, 0.67, 0.96, 0.97, 0.99]
+O2 = [0.01, 0.03, 0.06, 0.08, 0.18, 0.27, 0.55, 0.86]
+# Stackplot with X, Y, colors value
+plt.stackplot(temperature, O2, CH4,
+              colors =['r', 'c'])
+
+# Temperature
+plt.xlabel('Temperature')
+ 
+# No of hours
+plt.ylabel('Pressure of methane and oxygen')
+ 
+# Title of Graph
+plt.title('Representation of CH4 and O2 wrt to Temperature')
+ 
+# Displaying Graph
+plt.show()
+
+# Pie Charts
+
+from matplotlib import pyplot as plt
+import numpy as np
+# Creating dataset
+cation = ['Mn', 'Cd', 'Sn', 'Ti', 'Pt', 'Pb']
+YC2 = [50.10, 10.25, 3.65, 76.10, 27.25, 12.91]
+# Creating plot
+fig = plt.figure(figsize =(10, 7))
+plt.pie(YC2, labels = cation)
+# show plot
+plt.show()
+
+# Fill Between
+
+# x axis values
+x = [0.1,0.2,0.3]
+# corresponding y axis values
+y = [0.2,0.4,0.8]
+# corresponding z axis values
+z = [0.4,0.8,1.0]
+# plotting the points 
+plt.plot(x, y, x, z)
+
+# Filling between line a3 
+# and line a4
+plt.fill_between(x, y, z, color='green', alpha=0.5)
+plt.show()
+
+#Box plot
+
+import matplotlib.pyplot as plt
+import numpy as np
+data_1 = [0.01,0.05,2.70]
+data_2 = [0.00,0.10,1.35]
+data = [data_1,data_2]
+fig = plt.figure(figsize =(10, 7))
+ 
+# Creating axes instance
+ax = fig.add_axes([0, 0, 1, 1])
+# Creating plot
+bp = ax.boxplot(data)
+# show plot
+plt.xlabel("Partial pressure of methane and oxygen")
+plt.ylabel("Frequnecy range of pressure")
+plt.show()
+
+# Style Plot
+
+from matplotlib import style
+data = [5.0,4.0,3.0,2.0,1.5,0.2,0.8,1.8,2.2,5.9,7.3,8.9]
+# using the style for the plot
+plt.style.use('Solarize_Light2')
+# creating a plot
+plt.plot(data)
+  
+# show plot
+plt.show()
+
+# using the style for the plot
+plt.style.use('dark_background')
+# creating a plot
+plt.plot(data)
+  
+# show plot
+plt.show()
+
+# using the style for the plot
+plt.style.use('ggplot')
+  
+# creating plot
+plt.plot(data, linestyle=":", linewidth=2)
+  
+# show plot
+plt.show()
+
+plt.style.use('fivethirtyeight')
+# creating plot
+plt.plot(data, linestyle=":", linewidth=2)
+  
+# show plot
+plt.show()
+
+# Surface plot
+# importing libraries
+from mpl_toolkits import mplot3d
+import numpy as np
+import matplotlib.pyplot as plt
+
+# defining surface and axes
+x = np.outer(np.linspace(-2, 2, 10), np.ones(10))
+y = x.copy().T
+z = np.cos(x ** 1 + y ** 18)
+
+fig = plt.figure()
+# syntax for 3-D plotting
+ax = plt.axes(projection ='3d')
+# syntax for plotting
+ax.plot_surface(x, y, z, cmap ='viridis', edgecolor ='green')
+ax.set_title('3D Surface plot')
+plt.show()
+
+# 3D Graph
+
+# importing mplot3d toolkits, numpy and matplotlib
+from mpl_toolkits import mplot3d
+import numpy as np
+import matplotlib.pyplot as plt
+
+# defining surface and axes
+x = np.outer(np.linspace(-2, 2, 10), np.ones(10))
+y = x.copy().T
+z = np.cos(x ** 1 + y ** 18)
+
+# plotting
+fig = plt.figure()
+# syntax for 3-D projection
+ax = plt.axes(projection ='3d')
+ax.plot3D(x, y, z, 'green')
+ax.set_title('3D line plot')
+plt.show()
+
+# Wireframe
+
+# importing mplot3d toolkits, numpy and matplotlib
+from mpl_toolkits import mplot3d
+import numpy as np
+import matplotlib.pyplot as plt
+
+# function for z axea
+def f(x, y):
+	return np.sin(np.sqrt(x ** 1 + y ** 18))
+
+# x and y axis
+x = np.linspace(-1, 5, 10)
+y = np.linspace(-1, 5, 10)
+
+X, Y = np.meshgrid(x, y)
+Z = f(X, Y)
+
+fig = plt.figure()
+ax = plt.axes(projection ='3d')
+ax.plot_wireframe(X, Y, Z, color ='blue')
+ax.set_title('wireframe');
+
+# Seaborn with histogram
+
+pip install seaborn
+import seaborn as sns
+cationmol = [1, 2.6, 3.8, 7.5, 8, 9, 10, 50, 82, 77]
+sns.set(style="white")
+sns.distplot(cationmol, kde=True, color="m")
+
+# Seaborn without histogram
+
+cationmol = [1, 2.6, 3.8, 7.5, 8, 9, 10, 50, 82, 77]
+sns.distplot([0, 1, 2, 3, 4, 5], hist=False)
+
+plt.show()
+
+sns.distplot([0, 1, 2, 3, 4, 5])
+plt.show()
+
+# Altair
+pip install altair
+# Importing altair and pandas library
+import altair as alt
+import pandas as pd
+
+cation = ['Mn', 'Cd', 'Sn', 'Ti', 'Pt', 'Ce', 'Pb', 'Bi', 'Mo', 'Cu', 'Sb', 'Li', 'Mg']
+molepercentage = [9.2, 4.7, 4.5, 10.4, 2.8, 3.8, 2.6, 2.6, 5.5, 8.0, 4.4, 44.6, 18.7]
+
+# Making a Pandas DataFrame
+score_data = pd.DataFrame({'cation': 
+                           ['Mn', 'Cd','Sn', 'Ti', 'Pt','Bi','Mo','Cu','Sb','Li','Mg'],
+                           'mole percentage': [9.2, 4.7, 4.5, 10.4, 2.8, 3.8, 2.6, 2.6,
+                            5.5, 8.0, 4.4,]})
+# Making the Simple Bar Chart
+alt.Chart(score_data).mark_bar().encode(x='cation',y='mole percentage')
+
+# Bokeh - Scatter plot
+
+pip install bokeh
+# import modules
+from bokeh.plotting import figure, output_notebook, show
+# output to notebook
+output_notebook()
+# create figure
+p = figure(plot_width = 400, plot_height = 400)
+# add a circle renderer with
+# size, color and alpha
+p.circle(x1, y1, size = 10, color = "navy", alpha = 0.5)
+  
+# show the results
+show(p) 
+
+# Bokeh - Line plot
+
+# import modules
+from bokeh.plotting import figure, output_notebook, show
+
+# output to notebook
+output_notebook()
+
+# create figure
+p = figure(plot_width = 400, plot_height = 400)
+
+# add a line renderer
+p.line([1, 2, 3, 4, 5], [3, 1, 2, 6, 5],
+		line_width = 2, color = "green")
+
+# show the results
+show(p)
 
