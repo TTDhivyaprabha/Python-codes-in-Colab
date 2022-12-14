@@ -1,0 +1,279 @@
+%lsmagic
+%ldir
+%history
+%alias
+%ls
+%pwd
+%shell date
+%rmdir
+%shell echo "hello"
+%prun
+%tensorflow_version
+import tensorflow as tf
+print(tf.__version__)
+%time
+%who
+%cd
+%bookmark magics
+%colors LightBG
+%alias_magic currdir pwd
+%currdir
+def addition(a,b):
+    return a+b
+%autocall
+%autocall
+%automagic
+%magic
+%quickref
+%system echo "Welcome to Colab Environment"
+%system ls -lrt
+%sx echo "Benzaldehyde is readily oxidized to benzoic acid"
+%timeit out = [i*i for i in range(1000000)]
+def molarmass(Na,Cl):
+    return Na+Cl
+%autocall
+%autocall
+%who_ls function
+%whos str
+%whos dict
+%whos float
+%whos list
+%whos function
+%env HOME
+%set_env HOME=/home/sunny
+%env HOME
+%tb
+%conda env list
+%pip install sklearn
+%dhist
+%history
+%doctest_mode
+a=10
+
+a/0
+%doctest_mode
+%prun
+import random
+%prun arr1 = [random.randint(1,10) for i in range(100000)]
+%prun -l 10 -s tottime -T prof_res.out arr1 = [random.randint(1,10) for i in range(100000)]
+%matplotlib --list
+
+import matplotlib.pyplot as plt
+
+plt.plot(range(10), range(10))
+plt.show()
+
+%matplotlib inline
+import matplotlib.pyplot as plt
+
+plt.plot(range(10), range(10))
+plt.show()
+
+def division(a, b):
+    '''
+    This function divides first argument by second. 
+    It return 0 if second argument is 0 to avoid divide by zero error
+    '''
+    return a / b if b!=0 else 0
+
+%pdoc division
+
+%precision 2
+a = 5.2367837120
+
+a
+
+%psource division
+%pylab
+arr = array([1,2,3,4])
+type(arr)
+rng = arange(10)
+print(rng)
+type(rng)
+plot(range(10), range(10))
+
+%recall 4
+%quickref
+%rerun
+%reset
+%who_ls
+# Mass numbers of typical isotopes of Sulfur are 23; 33; 34; 36. 
+S1 = 23
+S2 = 33
+S3 = 34
+S4 = 36
+name_symbol = "Sulphur (S)"
+
+%who_ls
+
+%who_ls function
+
+%whos str
+%who_ls
+%who_ls function
+%reset_selective -f  name_symbol
+who_ls 
+%history
+# Molecular weight of Carbonyl flouride (CF20)
+CF20 = 66.00691
+CF20/0
+
+%%javascript
+// program to find the largest among three numbers
+// take input from the user
+const num1 = 12
+const num2 = 10
+const num3 = 35
+let largest;
+// check the condition
+if(num1 >= num2 && num1 >= num3) {
+    largest = num1; }
+else if (num2 >= num1 && num2 >= num3) {
+    largest = num2; }
+else {
+    largest = num3;
+}
+// display the result
+element.innerHTML =  '<h1>The Largest Number is : ' + largest + '</h3>'
+
+%%writefile profiling_example.py
+
+from memory_profiler import profile
+
+@profile(precision=4)
+def main_func():
+    import random
+    arr1 = [random.randint(1,10) for i in range(100000)]
+    arr2 = [random.randint(1,10) for i in range(100000)]
+    arr3 = [arr1[i]+arr2[i] for i in range(100000)]
+    tot = sum(arr3)
+    print(tot)
+
+if __name__ == "__main__":
+    main_func()
+
+!cat profiling_example.py
+
+%%time
+
+def main_func():
+    import random
+    arr1 = [random.randint(1,10) for i in range(100000)]
+    arr2 = [random.randint(1,10) for i in range(100000)]
+    arr3 = [arr1[i]+arr2[i] for i in range(100000)]
+    tot = sum(arr3)
+    print(tot)
+
+main_func()
+
+%%timeit
+
+def main_func():
+    import random
+    arr1 = [random.randint(1,10) for i in range(100000)]
+    arr2 = [random.randint(1,10) for i in range(100000)]
+    arr3 = [arr1[i]+arr2[i] for i in range(100000)]
+    tot = sum(arr3)
+
+main_func()
+
+
+%%js
+// program to find the largest among three numbers // take input from the user
+const num1 = 312
+const num2 = 210
+const num3 = 135
+let largest;
+// check the condition
+if(num1 >= num2 && num1 >= num3) {
+    largest = num1; }
+else if (num2 >= num1 && num2 >= num3) {
+    largest = num2; }
+else {
+    largest = num3; }
+// display the result
+element.innerHTML  = '<h4>The Largest Number is : ' + largest + '</h4>';
+
+
+%%writefile profiling_example.py
+
+from memory_profiler import profile
+
+@profile(precision=4)
+def main_func():
+    import random
+    arr1 = [random.randint(1,10) for i in range(100000)]
+    arr2 = [random.randint(1,10) for i in range(100000)]
+    arr3 = [arr1[i]+arr2[i] for i in range(100000)]
+    tot = sum(arr3)
+    print(tot)
+
+if __name__ == "__main__":
+    main_func()
+
+!cat profiling_example.py
+%lsmagic
+%%prun
+
+def main_func():
+    import random
+    arr1 = [random.randint(1,10) for i in range(100000)]
+    arr2 = [random.randint(1,10) for i in range(100000)]
+    arr3 = [arr1[i]+arr2[i] for i in range(100000)]
+    tot = sum(arr3)
+    print(tot)
+
+main_func()
+
+%%prun -l 10 -s tottime -T prof_res.out
+
+def main_func():
+    import random
+    arr1 = [random.randint(1,10) for i in range(100000)]
+    arr2 = [random.randint(1,10) for i in range(100000)]
+    arr3 = [arr1[i]+arr2[i] for i in range(100000)]
+    tot = sum(arr3)
+    print(tot)
+
+main_func()
+
+!cat prof_res.out
+
+%system echo "Zinc sulfate is an inorganic compound."
+
+%doctest_mode
+
+# Lithium Chloride 
+
+def lithiumchloride(Li,Cl):
+  return Li/Cl if Cl!=0 else 0
+
+  
+%pdoc lithiumchloride
+
+%doctest_mode
+
+%precision 2
+LiCl = 42.312223
+
+LiCl
+
+%psource lithiumchloride
+
+%%javascript
+// program to find the largest among three numbers
+// take input from the user
+float nitrogen = 14.007
+float bromine = 79.904
+float iodine = 126.90
+let largest;
+// check the condition
+if(nitrogen >= bromine && nitrogen >= iodine) {
+    largest = nitrogen; }
+else if (bromine >= nitrogen && bromine >= iodine) {
+    largest = bromine; }
+else {
+    largest = iodine;
+}
+// display the result
+element.innerHTML =  '<h1>The Largest Atomic Mass is : ' + largest + '</h3>'
