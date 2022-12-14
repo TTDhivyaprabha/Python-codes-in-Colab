@@ -1,0 +1,109 @@
+%matplotlib inline
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings("ignore") 
+
+from google.colab import files
+uploaded = files.upload()
+
+import io
+df = pd.read_csv(io.BytesIO(uploaded['logP_dataset.csv']))
+print(df)
+
+!pip install wandb -qqq
+import wandb
+wandb.login()
+
+!pip install rdkit-pypi -qqq
+
+import datetime
+import pandas as pd
+from rdkit import Chem
+from rdkit.Chem import AllChem, Draw
+
+resveratrol = Chem.MolFromSmiles("C(C=CBr)N")
+Chem.MolToMolFile(resveratrol, "resveratrol.mol")
+
+def mol_to_pil_image(molecule: Chem.rdchem.Mol, width: int = 300, height: int = 300) -> "PIL.Image":
+    Chem.AllChem.Compute2DCoords(molecule)
+    Chem.AllChem.GenerateDepictionMatching2DStructure(molecule, molecule)
+    pil_image = Chem.Draw.MolToImage(molecule, size=(width, height))
+    return pil_image
+ 
+ smiles = {
+    "resveratrol": "C(C=CBr)N",
+    }
+
+data = [
+    {
+        "name": "resveratrol",
+        "smiles": smiles["resveratrol"],
+        # wandb.Molecule from a .mol file:
+        "molecule": wandb.Molecule.from_rdkit("resveratrol.mol"),
+        "molecule_2D": wandb.Image(mol_to_pil_image(resveratrol))
+    }
+]
+
+run = wandb.init(project="rdkit_molecules")
+
+dataframe = pd.DataFrame.from_records(data)
+table = wandb.Table(dataframe=dataframe)
+wandb.log(
+    {
+        "table": table,
+        "molecules": [substance.get("molecule") for substance in data],
+    }
+)
+
+run.finish()
+
+#1 Importing the libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import io
+
+from google.colab import files
+uploaded = files.upload()
+
+df = pd.read_excel(io.BytesIO(uploaded['Newdata_2.xlsx']))
+print(df)
+
+X = df.iloc[:,0:5].values.astype(float)
+
+print(X)
+
+y = df.iloc[:,5:6].values.astype(float)
+
+print(y)
+
+# Feature Scaling
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+sc_y = StandardScaler()
+X = sc_X.fit_transform(X)
+y = sc_y.fit_transform(y)
+
+from sklearn.svm import SVR
+
+regressor = SVR(kernel='rbf')
+regressor.fit(X,y)
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.2, random_state=10)
+
+svr_rbf = SVR(kernel='rbf')
+y_svr = svr_rbf.fit(X_train,y_train)
+predict_svr_train = y_svr.predict(X_test)
+
+print('Score on training set:', svr_rbf.score(X_train, y_train))
+print('Score on testing set:', svr_rbf.score(X_test, y_test))
+
+y_pred = regressor.predict([[-10.61,99.07,34.55,308.35,773.16]]) 
+
+res = np.round(y_pred,2)
+
+print(res) 
