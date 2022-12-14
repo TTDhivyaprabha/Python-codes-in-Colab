@@ -277,3 +277,41 @@ else {
 }
 // display the result
 element.innerHTML =  '<h1>The Largest Atomic Mass is : ' + largest + '</h3>' 
+
+
+%%javascript
+//Atomic mass of three chemical elements
+// take input from the user
+nitrogen = 14.007
+bromine = 79.904
+iodine = 126.90
+let largest;
+// check the condition
+if(nitrogen >= bromine && nitrogen >= iodine) {
+    largest = nitrogen; }
+else if (bromine >= nitrogen && bromine >= iodine) {
+    largest = bromine; }
+else {
+    largest = iodine;
+}
+// display the result
+element.innerHTML =  '<h1>The Largest Atomic Mass is : ' + largest + '</h3>'
+
+%%js
+
+// Melting point of three transition metals given in degree celcius
+// take input from the user
+const Titanium = 1668
+const Chromium = 1907
+const Technetium = 2157
+let largest;
+// check the condition
+if(Titanium >= Chromium && Titanium >= Technetium) {
+    largest = nitrogen; }
+else if (Chromium >= Titanium && Chromium >= Technetium) {
+    largest = Chromium; }
+else {
+    largest = Technetium;
+}
+// display the result
+element.innerHTML =  '<h1>The Largest Melting Point Metal is : ' + largest + '</h3>'
