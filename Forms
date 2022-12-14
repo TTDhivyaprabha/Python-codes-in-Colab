@@ -1,0 +1,13 @@
+#@title EOResidualsTestRequestForm { display-mode: "both" }
+
+Sample_name = "ethylene oxide" #@param {type:"string"}
+
+EO_Extraction = "20-25 degree celcius" #@param {type:"raw"}
+
+Sample_Testing_Date = "2022-08-30" #@param {type:"date"}
+
+Sample_quantity = 10 #@param {type:"number"}
+
+Is_Sample_Contain_Hazardous_Materials = False #@param {type:"boolean"}
+
+Reporting_Limits = "EO&ECH Exhaustive Water Extraction" #@param ["EO&ECH Exhaustive Water Extraction", "Liquid Sample (EO&ECH)", "EO Headspace Extraction", "EO&ECH Simulated Use Extraction"]
