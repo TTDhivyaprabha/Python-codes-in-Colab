@@ -276,4 +276,4 @@ else {
     largest = iodine;
 }
 // display the result
-element.innerHTML =  '<h1>The Largest Atomic Mass is : ' + largest + '</h3>'
+element.innerHTML =  '<h1>The Largest Atomic Mass is : ' + largest + '</h3>' 
